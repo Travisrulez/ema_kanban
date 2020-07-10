@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=yes" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Канбан-доска Vue</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" rel="stylesheet" />
+    <link href="css/style-light.css" id="page-style" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        document.documentElement.style.setProperty('--animate-duration', '.25s')
+
+        function PopUpShow(board_id, card_id) {
+            const animation = 'animate__animated animate__fadeIn'
+            const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd onaimationend animationend'
+            const modalWindow = $('.modal')
+            const description = $('#task-description')
+            const executor = $('#in-charge')
+            const startTime = $('#task-start')
+            const finishTime = $('#task-end')
+            const status = $('[name="task-status"]')
+            const card_elements = document.getElementById(card_id).children
+
+            modalWindow.attr('id', 'modal-for-' + card_id)
+
+            switch (board_id) {
+                case 'board-1':
+                    description
+                        .attr('value', card_elements[1].innerHTML)
+                    executor
+                        .attr('value', null)
+                        .attr('required', false)
+                        .attr('disabled', true)
+                        .css('opacity', '.25')
+                    startTime
+                        .attr('value', null)
+                        .attr('required', false)
+                        .attr('disabled', true)
+                        .css('opacity', '.25')
+                    finishTime
+                        .attr('value', null)
+                        .attr('required', false)
+                        .attr('disabled', true)
+                        .css('opacity', '.25')
+                    status.val('board-1')
+                    break
+                case 'board-2':
+                    description
+                        .attr('value', card_elements[1].innerHTML)
+                    executor
+                        .attr('value', card_elements[9].innerHTML)
+                        .attr('required', true)
+                        .attr('disabled', false)
+                        .css('opacity', '1')
+                    startTime
+                        .attr('value', card_elements[7].innerHTML)
+                        .attr('required', true)
+                        .attr('disabled', false)
+                        .css('opacity', '1')
+                    finishTime
+                        .attr('value', null)
+                        .attr('required', false)
+                        .attr('disabled', true)
+                        .css('opacity', '.25')
+                    status.val('board-2')
+                    break
+                case 'board-3':
+                    description
+                        .attr('value', card_elements[1].innerHTML)
+                    executor
+                        .attr('value', card_elements[9].innerHTML)
+                        .attr('required', true)
+                        .attr('disabled', false)
+                        .css('opacity', '1')
+                    startTime
+                        .attr('value', card_elements[7].innerHTML)
+                        .attr('required', true)
+                        .attr('disabled', false)
+                        .css('opacity', '1')
+                    finishTime
+                        .attr('value', card_elements[6].innerHTML)
+                        .attr('required', true)
+                        .attr('disabled', false)
+                        .css('opacity', '1')
+                    status.val('board-3')
+                    break
+            }
+
+            modalWindow.css("display", "flex").addClass(animation).one(animationEnd, function() {
+                modalWindow.removeClass(animation)
+            })
+
+        }
+
+        function PopUpHide() {
+            const animation = 'animate__animated animate__fadeOut'
+            const animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd onaimationend animationend'
+            const modalWindow = $('.modal')
+            const description = $('#task-description')
+            const executor = $('#in-charge')
+            const startTime = $('#task-start')
+            const finishTime = $('#task-end')
+
+            modalWindow.addClass(animation).one(animationEnd, function() {
+                modalWindow.removeClass(animation).css("display", "none")
+            })
+
+            description.attr('value', '')
+            executor.attr('value', '')
+            startTime.attr('value', '')
+            finishTime.attr('value', '')
+        }
+
+        let i = 0;
+
+        function ChangeTheme() {
+            const light = "css/style-light.css"
+            const dark = "css/style-dark.css"
+
+            i++
+            if (i % 2 === 1) {
+                document.getElementById('page-style').setAttribute("href", dark)
+            } else {
+                document.getElementById('page-style').setAttribute("href", light)
+
+            }
+        }
+    </script>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img src="favicon.ico" alt="logo" class="header__title">
+        <button class="header__button" onclick="ChangeTheme()">Изменить тему</button>
+    </header>
+    <main class="main" id="main"></main>
+</body>
+
+</html>

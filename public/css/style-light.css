@@ -1,0 +1,287 @@
+.page {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    width: 100%;
+    background-color: yellow;
+    color: blue;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    transition: 0.25s;
+}
+
+::selection {
+    background-color: blue;
+    color: yellow;
+}
+
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    margin: 1rem 0;
+}
+
+.header__title {
+    width: 5vw;
+    height: 7vh;
+    margin: 0;
+}
+
+.header__button {
+    border: none;
+    background: none;
+    height: 4rem;
+    width: 4rem;
+    padding: 0;
+    opacity: 0.5;
+    transition: 0.25s;
+}
+
+.header__button:hover {
+    opacity: 1;
+    transition: 0.25s;
+}
+
+.main {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 80%;
+}
+
+.new-task {
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    grid-template-areas: "label label" "input submit";
+    width: 50%;
+    min-width: 400px;
+}
+
+.new-task__label {
+    grid-area: label;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1vh;
+}
+
+.new-task__input {
+    grid-area: input;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    border: 2px solid blue;
+    padding: 2px;
+}
+
+.new-task__submit {
+    grid-area: submit;
+    border: none;
+    background: none;
+    font-size: 2.5rem;
+    height: 3rem;
+    width: 3rem;
+    margin: 0 auto;
+    padding: 0;
+    transition: 0.25s;
+}
+
+.new-task__submit:hover {
+    color: yellow;
+    background-color: blue;
+    transition: 0.25s;
+}
+
+.kanban {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 700px;
+    margin-top: 5vh;
+}
+
+.board {
+    color: blue;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    border: 3px solid blue;
+    padding-top: 2.5%;
+    width: 31.4285714286%;
+}
+
+.board_plan .task-card__header,
+.board_plan .task-card__info,
+.board_plan .control-panel__button:last-child,
+.board_in-work .task-card__header:nth-of-type(2),
+.board_in-work .task-card__info:nth-of-type(2),
+.board_in-work .control-panel__button:last-child,
+.board_ready .control-panel__button:nth-child(2) {
+    display: none;
+}
+
+.board__title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+    color: yellow;
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+.cards {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    min-height: 20vh;
+    padding: 0 5% 2.5vh 5%;
+}
+
+.task-card {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    align-self: flex-start;
+    justify-content: flex-start;
+    background-color: #dddddd;
+    width: 100%;
+    padding: 5%;
+    box-sizing: border-box;
+    margin-top: 2.5vh;
+}
+
+.task-card__title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.375rem;
+}
+
+.task-card__description {
+    margin: 1vh 0 0 0;
+    font-size: 1.125rem;
+}
+
+.task-card__header {
+    margin: 1.25vh 0 0 0;
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.task-card__info {
+    font-weight: 300;
+    font-size: 0.875rem;
+}
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.25vh;
+}
+
+.control-panel__button {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    height: 2rem;
+    width: 100%;
+    margin-left: 0.5vw;
+    padding: 0;
+    transition: 0.25s;
+}
+
+.control-panel__button:hover {
+    color: #dddddd;
+    background-color: blue;
+    transition: 0.25s;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.125);
+}
+
+.redact {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 60%;
+    background-color: yellow;
+    border: 3px solid blue;
+    padding: 2.5%;
+}
+
+.redact__button {
+    align-self: flex-end;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    height: 2.125rem;
+    width: 2.125rem;
+    padding: 0;
+    transition: 0.25s;
+}
+
+.redact__button:hover {
+    color: yellow;
+    background-color: blue;
+    transition: 0.25s;
+}
+
+.redact__label {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1vh;
+}
+
+.redact__input {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    margin-bottom: 2.5vh;
+    width: 37.6344086022%;
+    height: 4.693877551%;
+    border: 2px solid blue;
+    padding: 2px;
+}
+
+.redact__submit {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    height: 2.125rem;
+    padding: 5px;
+    align-self: center;
+    transition: 0.25s;
+}
+
+.redact__submit:hover {
+    color: yellow;
+    background-color: blue;
+    transition: 0.25s;
+}
+
+
+/*# sourceMappingURL=style-light.css.map */
