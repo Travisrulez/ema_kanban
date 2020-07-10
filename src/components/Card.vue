@@ -40,8 +40,11 @@
         },
         created() {
             eventBus.$on('needTime', () => {
+                console.log('id', this.id)
                 const card = document.getElementById(this.id)
-                const board_id = card.parentNode.id
+                console.log('card', card)
+                if (card !== null) {
+                    const board_id = card.parentNode.id
                 const board_num = board_id.slice(board_id.length - 1)
 
                 if ((board_num === '2') && (!this.computedStartTime)) {
@@ -52,49 +55,8 @@
                     this.computedStartTime = this.formatTimeReadable(this.formatTime(today))
 
                 }
-            })
-            eventBus.$on('done', () => {
-                const card = document.getElementById(this.id)
-                const board_id = card.parentNode.id
-                const board_num = board_id.slice(board_id.length - 1)
-
-                if (board_num === '3') {
-                    const start = new Date(Date.parse(this.computedStartTime))
-                    const finish = new Date()
-                    const wasted = finish - start
-
-                    let minutes = Math.floor(wasted / (1000 * 60))
-                    let hours = Math.floor(wasted / (1000 * 60 * 60))
-                    let answer
-
-                    switch (minutes) {
-                        case (minutes < 1):
-                            answer = 'Меньше минуты'
-                            break
-                        case (minutes > 59):
-                            minutes = wasted % (1000 * 60)
-                            answer = hours + 'Часов: ' + hours + ', минут: ' + minutes
-                            break
-                        default:
-                            answer = 'Минут: ' + minutes
-                            break
-                    }
-
-                    this.popUpFinishTime = this.formatTime(finish)
-                    this.computedWastedTime = answer
                 }
-            })
-            eventBus.$on('backToPlan', () => {
-                const card = document.getElementById(this.id)
-                const board_id = card.parentNode.id
-                const board_num = board_id.slice(board_id.length - 1)
-
-                if (board_num === '1') {
-                    this.computedStartTime = null
-                    this.popUpFinishTime = null
-                    this.popUpStartDate = null
-                    this.computedWastedTime = null
-                }
+                
             })
             eventBus.$on('applyChanges', function (card_id) {
                 const card = document.getElementById(card_id)
@@ -114,7 +76,6 @@
                     document.getElementById(status).appendChild(card)
 
                     eventBus.$emit('needTime')
-                    eventBus.$emit('done')
                     eventBus.$emit('backToPlan')
                     eventBus.$emit('makeCount')
 
@@ -136,7 +97,6 @@
                 document.getElementById(board_id.slice(0, -1) + (parseInt(board_num) + 1)).appendChild(card)
 
                 eventBus.$emit('needTime')
-                eventBus.$emit('done')
                 eventBus.$emit('backToPlan')
                 eventBus.$emit('makeCount')
             },
